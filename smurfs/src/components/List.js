@@ -1,6 +1,7 @@
 import React, {useEffect} from "react"
 import { connect } from "react-redux"
 import {fetchSmurfs} from "../actions/smurfAction"
+import Smurf from "./Smurfs"
 
 function List(props) {
     useEffect(()=>{
@@ -11,7 +12,7 @@ function List(props) {
         {props.loadingSmurfs && <p>Loading Smurf...</p>}
         {props.smurfs && props.smurfs.map((smurf => {
             return (
-                <h2>{smurf.name}</h2>
+                <Smurf smurf={smurf} />
             )
         }))}
         </div>
