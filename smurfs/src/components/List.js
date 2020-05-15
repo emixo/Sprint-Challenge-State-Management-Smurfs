@@ -10,7 +10,7 @@ function List(props) {
     return (
         <div> SmurfsList
         {props.loadingSmurfs && <p>Loading Smurf...</p>}
-        {props.smurfs && props.smurfs.map((smurf => {
+        {props.smurfs.map((smurf => {
             return (
                 <Smurf smurf={smurf} />
             )

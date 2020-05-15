@@ -22,6 +22,9 @@ export const fetchSmurfs = () => {
 
 export const postSmurf = (object) => {
     return dispatch => {
-        dispatch({ type: CREATE_SMURF, payload: object })
+        axios.post("http://localhost:3333/smurfs", object)
+        .then(res => {
+            console.log(res)
+        })
     }
 } 

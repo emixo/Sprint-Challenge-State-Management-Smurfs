@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react"
 import { connect } from "react-redux";
-import { postSmurf } from "../actions/smurfAction"
+import { postSmurf, fetchSmurfs } from "../actions/smurfAction"
 
 const initialSmurfState = {
     smurfName: "",
@@ -11,6 +11,9 @@ const initialSmurfState = {
 
 
 function Form(props) {
+    useEffect(() => {
+        props.fetchSmurfs();
+      }, []);
     const [smurfInputs, setSmurfInputs] = useState(initialSmurfState);
 
     const changeSmurfInput = (event) => {
@@ -21,7 +24,6 @@ function Form(props) {
     };
   
     const createSmurf = (event) => {
-      event.preventDefault();
       const newSmurf = {
           name: smurfInputs.smurfName,
           age: smurfInputs.smurfAge,
@@ -32,10 +34,6 @@ function Form(props) {
       props.postSmurf(newSmurf)
       setSmurfInputs(initialSmurfState)
     };
-
-    useEffect(() => {
-    }, [])
-
   
     return (
       <form onSubmit={createSmurf}>
@@ -70,4 +68,4 @@ function Form(props) {
     };
   };
   
-  export default connect(mapStateToProps, {postSmurf})(Form);
+  export default connect(mapStateToProps, {fetchSmurfs, postSmurf})(Form);
